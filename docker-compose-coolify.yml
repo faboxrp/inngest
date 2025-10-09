@@ -15,6 +15,10 @@ services:
       - "8289"      # Connect workers port (internal)
 
     environment:
+      # Production vs Development mode
+      - INNGEST_DEV=${INNGEST_DEV}
+      - INNGEST_BASE_URL=${INNGEST_BASE_URL}
+
       # Required authentication keys
       - INNGEST_EVENT_KEY=${INNGEST_EVENT_KEY}
       - INNGEST_SIGNING_KEY=${INNGEST_SIGNING_KEY}
