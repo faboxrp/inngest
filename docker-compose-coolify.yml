@@ -1,18 +1,19 @@
 # Docker Compose configuration for Inngest self-hosted deployment
 # Optimized for Coolify - Clean version without Traefik labels
 
-version: '3.8'
-
 services:
   # Inngest main service
   inngest:
-    image: inngest/inngest:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: inngest-server
     command: "inngest start"
     # Only expose internal ports - Coolify handles external routing
     expose:
       - "8288"      # Main API and Dashboard UI (internal)
       - "8289"      # Connect workers port (internal)
+
     environment:
       # Required authentication keys
       - INNGEST_EVENT_KEY=${INNGEST_EVENT_KEY}

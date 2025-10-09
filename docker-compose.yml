@@ -1,8 +1,6 @@
 # Docker Compose configuration for Inngest self-hosted deployment
 # Compatible with Coolify and production environments
 
-version: '3.8'
-
 services:
   # Inngest main service
   inngest:
@@ -157,6 +155,6 @@ networks:
   inngest-network:
     driver: bridge
     name: inngest_network
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
+    # ipam:
+    #   config:
+    #     - subnet: 172.20.0.0/16
