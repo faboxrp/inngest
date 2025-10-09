@@ -7,9 +7,9 @@ FROM alpine:latest
 # Instalar las herramientas que necesitamos: un shell (viene con alpine) y curl
 RUN apk update && apk add --no-cache curl
 
-# Copiar la aplicación Inngest y sus archivos desde la imagen "donante"
-COPY --from=builder / /
+# Copiar ÚNICAMENTE el binario de la aplicación a una ubicación estándar
+COPY --from=builder /inngest /usr/local/bin/inngest
 
-# Definir el comando por defecto para que el contenedor funcione igual que el original
-ENTRYPOINT ["/inngest"]
+# Apuntar el ENTRYPOINT a la nueva ubicación del binario
+ENTRYPOINT ["/usr/local/bin/inngest"]
 CMD ["start"]
