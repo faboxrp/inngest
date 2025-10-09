@@ -7,9 +7,8 @@ FROM alpine:latest
 # Instalar las herramientas que necesitamos: un shell (viene con alpine) y curl
 RUN apk update && apk add --no-cache curl
 
-# Copiar el binario desde su ubicación correcta, que acabamos de descubrir
+# Copiar el binario desde su ubicación correcta
 COPY --from=builder /usr/bin/inngest /usr/local/bin/inngest
 
-# Definir el comando por defecto para que el contenedor funcione igual que el original
-ENTRYPOINT ["/usr/local/bin/inngest"]
-CMD ["start"]
+# En lugar de usar ENTRYPOINT y CMD, usamos solo CMD con la ruta completa
+CMD ["/usr/local/bin/inngest", "start"]
